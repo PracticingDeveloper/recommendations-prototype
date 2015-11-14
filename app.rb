@@ -10,12 +10,22 @@ end
 
 Bundler.require
 
+enable :sessions
+
 get "/" do
   redirect "/#{SongDB.sample[:id]}"
 end
 
 get "/:id" do
+  session[:tags] ||= {}
+
   @current_song    = SongDB.find { |e| e[:id] == params[:id] }
+
+  @current_song[:tags].each { |t| 
+    session[:tags][t] ||= 0
+    session[:tags][t] += 1
+  }
+
   @recommendations = SongDB.sort_by { |e|
                        (@current_song[:tags] - e[:tags]).count
                      }.first(40).sample(3)
@@ -26,14 +36,11 @@ end
 __END__
 @@index
   .row
-    .col-md-2
     .col-md-8
       .well style="padding-top: 20px"
         p.lead #{@current_song[:title]} -- #{@current_song[:tags].join(" / ")}
         == '<iframe width="705" height="396" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>'
       .well style="padding-top: 20px"
-        p.lead 
-          small You may also like...
         .row
           .col-md-4
             a href="/#{@recommendations[0][:id]}" style="text-decoration: none; color: inherit;"
@@ -63,6 +70,15 @@ __END__
         p.text-center
           big
             == 'Feeling adventurous? <a href="/">Load a random song</a>'
+    .col-md-4
+      br
+      br
+      .panel.panel-info
+        .panel-heading Your top interests (according to our creepy robots)
+        ul.list-group
+          - session[:tags].sort_by { |k,v| v }.last(15).reverse_each do |k,v|
+            li.list-group-item #{k} - #{v}
+        
 @@layout 
 doctype html 
 html
