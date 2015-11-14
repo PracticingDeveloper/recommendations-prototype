@@ -33,6 +33,12 @@ get "/:id" do
   slim :index
 end
 
+get "/explore/:term" do
+  song = SongDB.select { |e| e[:tags].include?(params[:term]) }.sample
+
+  redirect "/#{song[:id]}"
+end
+
 __END__
 @@index
   .row
@@ -77,7 +83,8 @@ __END__
         .panel-heading Your top interests (according to our creepy robots)
         ul.list-group
           - session[:tags].sort_by { |k,v| v }.last(15).reverse_each do |k,v|
-            li.list-group-item #{k} - #{v}
+            li.list-group-item 
+              a href="/explore/#{k}" #{k} - #{v}
         
 @@layout 
 doctype html 
