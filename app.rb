@@ -27,8 +27,8 @@ get "/:id" do
   }
 
   @recommendations = SongDB.sort_by { |e|
-                       (@current_song[:tags] - e[:tags]).count
-                     }.first(40).sample(3)
+                       [@current_song[:tags] & e[:tags]].reduce { |s,t| s + session[:tags].fetch(t) }
+                     }.last(20).sample(3)
 
   slim :index
 end
