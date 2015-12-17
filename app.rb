@@ -20,17 +20,17 @@ __END__
           small You may also like...
         .row
           .col-md-4
-            img src="/video-placeholder.png" width="100%"
+            img src="/rec1-placeholder.png" width="100%"
             p.text-center
               small
                 | A first recommendation
           .col-md-4
-            img src="/video-placeholder.png" width="100%"
+            img src="/rec2-placeholder.png" width="100%"
             p.text-center
               small
                 | A second recommendation
           .col-md-4
-            img src="/video-placeholder.png" width="100%"
+            img src="/rec3-placeholder.png" width="100%"
             p.text-center
               small
                 | A third recommendation
