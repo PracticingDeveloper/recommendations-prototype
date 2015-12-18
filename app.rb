@@ -27,27 +27,27 @@ __END__
     .col-md-8
       .well style="padding-top: 20px"
         p.lead #{@current_song} - #{@artist}
-        == '<iframe width="705" height="396" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>'
+        == '<iframe width="705" height="396" src="https://www.youtube.com/embed/MejbOFk7H6c" frameborder="0" allowfullscreen></iframe>'
       .well style="padding-top: 20px"
         p.lead 
           small You may also like...
         .row
           .col-md-4
-            img src="/video-placeholder.png" width="100%"
+            img src="http://img.youtube.com/vi/nHlJODYBLKs/0.jpg" width="100%"
             p.text-center
               small
                 | #{@recommendations[0]}
                 br
                 | #{@artist}
           .col-md-4
-            img src="/video-placeholder.png" width="100%"
+            img src="http://img.youtube.com/vi/UJKythlXAIY/0.jpg" width="100%"
             p.text-center
               small
                 | #{@recommendations[1]}
                 br
                 | #{@artist}
           .col-md-4
-            img src="/video-placeholder.png" width="100%"
+            img src="http://img.youtube.com/vi/Rb4lgOiHBZo/0.jpg" width="100%"
             p.text-center
               small
                 | #{@recommendations[2]}
