@@ -44,13 +44,12 @@ __END__
   .row
     .col-md-8
       .well style="padding-top: 20px"
-        p.lead #{@current_song[:title]} -- #{@current_song[:tags].join(" / ")}
-        == '<iframe width="705" height="396" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>'
+        == %{<iframe width="705" height="396" src="https://www.youtube.com/embed/#{@current_song[:id]}" frameborder="0" allowfullscreen></iframe>}
       .well style="padding-top: 20px"
         .row
           .col-md-4
             a href="/#{@recommendations[0][:id]}" style="text-decoration: none; color: inherit;"
-              img src="/video-placeholder.png" width="100%"
+              img src="http://img.youtube.com/vi/#{@recommendations[0][:id]}/0.jpg" width="100%"
               p.text-center
                 small
                   strong #{@recommendations[0][:title]}
@@ -58,7 +57,7 @@ __END__
                   | #{@recommendations[0][:tags].join(" / ")}
           .col-md-4
             a href="/#{@recommendations[1][:id]}" style="text-decoration: none; color: inherit;"
-              img src="/video-placeholder.png" width="100%"
+              img src="http://img.youtube.com/vi/#{@recommendations[1][:id]}/0.jpg" width="100%"
               p.text-center
                 small
                   strong #{@recommendations[1][:title]}
@@ -66,7 +65,7 @@ __END__
                   | #{@recommendations[1][:tags].join(" / ")}
           .col-md-4
             a href="/#{@recommendations[2][:id]}" style="text-decoration: none; color: inherit;"
-              img src="/video-placeholder.png" width="100%"
+              img src="http://img.youtube.com/vi/#{@recommendations[2][:id]}/0.jpg" width="100%"
               p.text-center
                 small
                   strong #{@recommendations[2][:title]}
